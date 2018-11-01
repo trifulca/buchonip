@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -12,13 +13,13 @@ const HTMLPage = `
 <!doctype html>
 <html>
   <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', '');
+      gtag('config', '%s');
     </script>
   </head>
 
@@ -48,8 +49,10 @@ func homeHandler(res http.ResponseWriter, req *http.Request) {
 
 	remote_ip := parse_ip(req.RemoteAddr)
 
+	gAnalId := os.Getenv("GOOGLE_ANALYTICS_ID")
+
 	log.Printf("Incoming request from %s", remote_ip)
-	fmt.Fprintf(res, HTMLPage, remote_ip)
+	fmt.Fprintf(res, HTMLPage, gAnalId, gAnalId, remote_ip)
 }
 
 func jsonHandler(res http.ResponseWriter, req *http.Request) {
