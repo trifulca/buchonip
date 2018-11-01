@@ -8,12 +8,14 @@ import (
 	"strings"
 )
 
-func requestHandler(w http.ResponseWriter, req *http.Request) {
+func requestHandler(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Server", "BuchonIP/0.1")
+
 	semicolon_index := strings.LastIndex(req.RemoteAddr, ":")
 	remote_ip := req.RemoteAddr[:semicolon_index]
 
 	log.Printf("Incoming request from %s", remote_ip)
-	fmt.Fprintf(w, remote_ip)
+	fmt.Fprintf(res, remote_ip)
 }
 
 func main() {
