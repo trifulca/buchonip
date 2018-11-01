@@ -13,6 +13,11 @@ const HTMLPage = `
 <!doctype html>
 <html>
   <head>
+    <style id="a">body{display:none !important;}</style>
+    <script>
+      if(self===top){var a=document.getElementById("a");a.parentNode.removeChild(a);}
+      else{top.location=self.location;}
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,13 +31,6 @@ const HTMLPage = `
   <body>
     <p>Su IP es <b>%s</b></p>
 	<p>Disponible en <a href="/txt" target="_blank">txt</a> y <a href="/json" target="_blank">json</a></p>
-    <pre lang="javascript">
-    <style id="a">body{display:none !important;}</style>
-    <script type="text/javascript">
-      if(self===top){var a=document.getElementById("a");a.parentNode.removeChild(a);}
-      else{top.location=self.location;}
-    </script>
-    </pre>
   </body>
 </html>
 `
