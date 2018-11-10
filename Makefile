@@ -14,7 +14,7 @@ comandos:
 	@echo ""
 	@echo "    ${G}ejecutar${N}                    Pone la aplicación en funcionamiento."
 	@echo "    ${G}test${N}                        Ejecuta los tests."
-	@echo "    ${G}deploy${N}                      Actualiza la versión de producción."
+	@echo "    ${G}version${N}                     Publica una nueva versión."
 	@echo ""
 
 
@@ -31,3 +31,6 @@ deploy:
 	scp buchonip root@hugoruscitti.com.ar:/root
 	@echo "${G}Reiniciando servicio en la vps ...${N}"
 	ssh -t root@hugoruscitti.com.ar "systemctl restart buchonip"
+
+version:
+	./bumpversion.sh
