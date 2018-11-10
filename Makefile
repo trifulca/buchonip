@@ -27,10 +27,12 @@ ejecutar:
 deploy:
 	@echo "${G}Compilando ...${N}"
 	env GOOS=linux GOARCH=amd64 go build
+	@echo "${G}Deteniendo servicio ...${N}"
+	ssh -t buchonip@hugoruscitti.com.ar "sudo /bin/systemctl stop buchonip"
 	@echo "${G}Copiando binario a la vps ...${N}"
 	scp buchonip buchonip@hugoruscitti.com.ar:/home/buchonip
 	@echo "${G}Reiniciando servicio en la vps ...${N}"
-	ssh -t buchonip@hugoruscitti.com.ar "sudo /bin/systemctl restart buchonip"
+	ssh -t buchonip@hugoruscitti.com.ar "sudo /bin/systemctl start buchonip"
 
 version:
 	./bumpversion.sh
