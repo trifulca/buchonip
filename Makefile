@@ -14,7 +14,7 @@ comandos:
 	@echo ""
 	@echo "    ${G}ejecutar${N}                    Pone la aplicación en funcionamiento."
 	@echo "    ${G}test${N}                        Ejecuta los tests."
-	@echo "    ${G}deploy${N}                      Actualiza la versión de producción."
+	@echo "    ${G}version${N}                     Publica una nueva versión."
 	@echo ""
 
 
@@ -27,7 +27,12 @@ ejecutar:
 deploy:
 	@echo "${G}Compilando ...${N}"
 	env GOOS=linux GOARCH=amd64 go build
+	@echo "${G}Deteniendo servicio ...${N}"
+	ssh -t buchonip@hugoruscitti.com.ar "sudo /bin/systemctl stop buchonip"
 	@echo "${G}Copiando binario a la vps ...${N}"
-	scp buchonip root@hugoruscitti.com.ar:/root
+	scp buchonip buchonip@hugoruscitti.com.ar:/home/buchonip
 	@echo "${G}Reiniciando servicio en la vps ...${N}"
-	ssh -t root@hugoruscitti.com.ar "systemctl restart buchonip"
+	ssh -t buchonip@hugoruscitti.com.ar "sudo /bin/systemctl start buchonip"
+
+version:
+	./bumpversion.sh
