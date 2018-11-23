@@ -13,6 +13,7 @@ const HTMLPage = `
 <!doctype html>
 <html>
   <head>
+    <title>BuchónIP - Conozca su IP</title>
     <style id="a">body{display:none !important;}</style>
     <script>
       if(self===top){var a=document.getElementById("a");a.parentNode.removeChild(a);}
@@ -29,6 +30,7 @@ const HTMLPage = `
   </head>
 
   <body>
+    <h1>BuchónIP</h1>
     <p>Su IP es <b>%s</b></p>
 	<p>Disponible en <a href="/txt" target="_blank">txt</a> y <a href="/json" target="_blank">json</a></p>
   </body>
