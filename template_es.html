@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>VerIP - Conozca su IP</title>
+
+    <!-- 1 -->
+    <style id="a">body{display:none !important;}</style>
+    <script>
+      if(self===top){var a=document.getElementById("a");a.parentNode.removeChild(a);}
+      else{top.location=self.location;}
+    </script>
+    <!-- 2 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%s');
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>VerIP</h1>
+    </header>
+    <main>
+      <section>
+        <p>Su IP es <b>%s</b></p>
+	      <p>Disponible en formato <a href="/txt" target="_blank">txt</a> y <a href="/json" target="_blank">json</a>.</p>
+      </section>
+    </main>
+
+    <aside>
+      <img src="https://via.placeholder.com/468x60?text=Trabajos+Sucios+El+Tuerto">
+    </aside>
+
+    <footer>
+      <p>VerIP es un servicio hecho con esmero desde 2018.</p>
+    </footer>
+  </body>
+</html>
